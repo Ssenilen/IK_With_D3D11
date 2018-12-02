@@ -34,7 +34,7 @@ public:
 	virtual void SetPosition(float x, float y, float z);
 	virtual void SetPosition(D3DXVECTOR3 d3dxvPosition);
 
-	D3DXVECTOR3 GetPosition();
+	virtual D3DXVECTOR3 GetPosition();
 
 	void MoveRight(float fDistance = 1.0f);
 	void MoveUp(float fDistance = 1.0f);

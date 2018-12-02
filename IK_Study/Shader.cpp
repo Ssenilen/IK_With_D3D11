@@ -160,10 +160,11 @@ void CShader::BuildObjects(ID3D11Device *pd3dDevice)
 	m_ppObjects = new CGameObject*[m_nObjects];
 
 	const int nBoneCount = 5;
+	const int nBoneLength = 20;
 
 	for (int y = 0; y < m_nObjects; ++y)
 	{
-		CMainBoneObject* pMainBoneObject = new CMainBoneObject(nBoneCount, pBoneMesh);
+		CMainBoneObject* pMainBoneObject = new CMainBoneObject(nBoneCount, nBoneLength, pBoneMesh);
 		m_ppObjects[y] = pMainBoneObject;
 	}
 }

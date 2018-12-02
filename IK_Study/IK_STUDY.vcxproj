@@ -88,9 +88,10 @@
     <ClInclude Include="BoneMesh.h" />
     <ClInclude Include="BoneObject.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CCDHelper.h" />
     <ClInclude Include="CubeMesh.h" />
     <ClInclude Include="CubeObject.h" />
-    <ClInclude Include="FabrikBoneObject.h" />
+    <ClInclude Include="FabrikHelper.h" />
     <ClInclude Include="GameFramework.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameTimer.h" />
@@ -108,9 +109,10 @@
     <ClCompile Include="BoneMesh.cpp" />
     <ClCompile Include="BoneObject.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CCDHelper.cpp" />
     <ClCompile Include="CubeMesh.cpp" />
     <ClCompile Include="CubeObject.cpp" />
-    <ClCompile Include="FabrikBoneObject.cpp" />
+    <ClCompile Include="FabrikHelper.cpp" />
     <ClCompile Include="GameFramework.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameTimer.cpp" />

@@ -55,17 +55,8 @@
     <Filter Include="소스 파일\02.Manager\02.GameObjectManager\02.IKBone">
       <UniqueIdentifier>{610f507b-6340-4271-9e02-b3264ecbb917}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02.Manager\02.GameObjectManager\02.IKBone\BoneBase">
+    <Filter Include="소스 파일\02.Manager\02.GameObjectManager\02.IKBone\IK Helper">
       <UniqueIdentifier>{adc652a8-0b9b-460d-b330-fc9163ba4fbd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02.Manager\02.GameObjectManager\02.IKBone\CCDIK">
-      <UniqueIdentifier>{255c9b98-e0cd-43a5-93ca-d447b1a9c029}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02.Manager\02.GameObjectManager\02.IKBone\FABRIK">
-      <UniqueIdentifier>{f4eced83-82f2-432f-8d53-fcfe4164af83}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02.Manager\02.GameObjectManager\02.IKBone\AnalyticIK">
-      <UniqueIdentifier>{2dcdde67-11af-42ff-86c9-4d4dd6bdfb0b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -115,16 +106,19 @@
       <Filter>소스 파일\00.Main</Filter>
     </ClInclude>
     <ClInclude Include="BoneMesh.h">
-      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone\BoneBase</Filter>
+      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone</Filter>
     </ClInclude>
     <ClInclude Include="BoneObject.h">
-      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone\BoneBase</Filter>
-    </ClInclude>
-    <ClInclude Include="FabrikBoneObject.h">
-      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone\FABRIK</Filter>
+      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone</Filter>
     </ClInclude>
     <ClInclude Include="MainBoneObject.h">
-      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone\BoneBase</Filter>
+      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone</Filter>
+    </ClInclude>
+    <ClInclude Include="CCDHelper.h">
+      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone\IK Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="FabrikHelper.h">
+      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone\IK Helper</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -165,16 +159,19 @@
       <Filter>소스 파일\00.Main</Filter>
     </ClCompile>
     <ClCompile Include="BoneMesh.cpp">
-      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone\BoneBase</Filter>
+      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone</Filter>
     </ClCompile>
     <ClCompile Include="BoneObject.cpp">
-      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone\BoneBase</Filter>
-    </ClCompile>
-    <ClCompile Include="FabrikBoneObject.cpp">
-      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone\FABRIK</Filter>
+      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone</Filter>
     </ClCompile>
     <ClCompile Include="MainBoneObject.cpp">
-      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone\BoneBase</Filter>
+      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone</Filter>
+    </ClCompile>
+    <ClCompile Include="CCDHelper.cpp">
+      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone\IK Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="FabrikHelper.cpp">
+      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone\IK Helper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
