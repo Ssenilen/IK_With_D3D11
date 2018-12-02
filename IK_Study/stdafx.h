@@ -28,6 +28,7 @@
 #include <D3DX10math.h>
 #include <iostream>
 #include <string>
+#include <vector>
 
 #define FRAME_BUFFER_WIDTH	1024
 #define FRAME_BUFFER_HEIGHT	768

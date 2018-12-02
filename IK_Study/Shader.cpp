@@ -2,6 +2,7 @@
 #include "Shader.h"
 
 #include "BoneObject.h"
+#include "MainBoneObject.h"
 #include "CubeObject.h"
 #include "BoneMesh.h"
 #include "CubeMesh.h"
@@ -160,30 +161,10 @@ void CShader::BuildObjects(ID3D11Device *pd3dDevice)
 
 	const int nBoneCount = 5;
 
-	CBoneObject *pBoneObject = nullptr;
-	CBoneObject *pPrevBoneObject = nullptr;
-
 	for (int y = 0; y < m_nObjects; ++y)
 	{
-		for (int n = 0; n < nBoneCount; ++n)
-		{
-			pBoneObject = new CBoneObject();
-			pBoneObject->SetMesh(pBoneMesh);
-			pBoneObject->SetPosition(0, n == 0 ? 0 : 20, 0);
-		
-			if (pPrevBoneObject)
-			{
-				pPrevBoneObject->SetChildBone(pBoneObject);
-				pBoneObject->SetParentBone(pPrevBoneObject);
-			}
-			else
-			{
-				m_ppObjects[y] = pBoneObject;
-			}
-
-			pPrevBoneObject = pBoneObject;
-		}
-		pPrevBoneObject = nullptr;
+		CMainBoneObject* pMainBoneObject = new CMainBoneObject(nBoneCount, pBoneMesh);
+		m_ppObjects[y] = pMainBoneObject;
 	}
 }
 
@@ -202,7 +183,7 @@ void CShader::AnimateObjects(float fTimeElapsed)
 {
 	for (int j = 0; j < m_nObjects; j++)
 	{
-		m_ppObjects[j]->Animate(fTimeElapsed, TRUE);
+		m_ppObjects[j]->Animate(fTimeElapsed);
 	}
 }
 

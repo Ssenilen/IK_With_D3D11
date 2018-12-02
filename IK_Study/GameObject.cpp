@@ -44,7 +44,7 @@ void CGameObject::SetMesh(CMesh *pMesh)
 }
 
 
-void CGameObject::Animate(float fTimeElapsed, bool bUseLocalMatrix)
+void CGameObject::Animate(float fTimeElapsed)
 {
 }
 

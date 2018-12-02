@@ -28,7 +28,7 @@ public:
 	CMesh *m_pMesh;
 
 	virtual void SetMesh(CMesh *pMesh);
-	virtual void Animate(float fTimeElapsed, bool bUseLocalMatrix = false);
+	virtual void Animate(float fTimeElapsed);
 	virtual void Render(ID3D11DeviceContext *pd3dDeviceContext);
 
 	virtual void SetPosition(float x, float y, float z);
@@ -48,7 +48,7 @@ public:
 	D3DXVECTOR3 GetRight();
 	CMesh *GetMesh() { return m_pMesh; }
 
-	bool IsVisible(CCamera *pCamera = NULL);
+	virtual bool IsVisible(CCamera *pCamera = NULL);
 
 	// 객체 렌더링 전에 호출할 함수
 	virtual void OnPrepareRender() {}
