@@ -5,6 +5,7 @@
 CGameObject::CGameObject()
 {
 	D3DXMatrixIdentity(&m_d3dxmtxWorld);
+	D3DXMatrixIdentity(&m_d3dxmtxLocal);
 	D3DXMatrixIdentity(&m_d3dxmtxRotate);
 	D3DXMatrixIdentity(&m_d3dxmtxScale);
 	D3DXMatrixIdentity(&m_d3dxmtxTranlate); 
@@ -43,7 +44,7 @@ void CGameObject::SetMesh(CMesh *pMesh)
 }
 
 
-void CGameObject::Animate(float fTimeElapsed)
+void CGameObject::Animate(float fTimeElapsed, bool bUseLocalMatrix)
 {
 }
 

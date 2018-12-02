@@ -1,6 +1,13 @@
 #include "stdafx.h"
 #include "Shader.h"
 
+#include "BoneObject.h"
+#include "CubeObject.h"
+#include "BoneMesh.h"
+#include "CubeMesh.h"
+
+
+
 // 월드 변환 행렬을 위한 상수 버퍼는 쉐이더 객체의 정적(static) 데이터 멤버이다.
 ID3D11Buffer *CShader::m_pd3dcbWorldMatrix = NULL;
 
@@ -146,6 +153,38 @@ void CShader::UpdateShaderVariable(ID3D11DeviceContext *pd3dDeviceContext, D3DXM
 
 void CShader::BuildObjects(ID3D11Device *pd3dDevice)
 {
+	CBoneMesh *pBoneMesh = new CBoneMesh(pd3dDevice, 5.0f, 20.0f, 5.0f, D3DXCOLOR(0.0f, 0.0f, 1.0f, 1.0f));
+
+	m_nObjects = 1;
+	m_ppObjects = new CGameObject*[m_nObjects];
+
+	const int nBoneCount = 5;
+
+	CBoneObject *pBoneObject = nullptr;
+	CBoneObject *pPrevBoneObject = nullptr;
+
+	for (int y = 0; y < m_nObjects; ++y)
+	{
+		for (int n = 0; n < nBoneCount; ++n)
+		{
+			pBoneObject = new CBoneObject();
+			pBoneObject->SetMesh(pBoneMesh);
+			pBoneObject->SetPosition(0, n == 0 ? 0 : 20, 0);
+		
+			if (pPrevBoneObject)
+			{
+				pPrevBoneObject->SetChildBone(pBoneObject);
+				pBoneObject->SetParentBone(pPrevBoneObject);
+			}
+			else
+			{
+				m_ppObjects[y] = pBoneObject;
+			}
+
+			pPrevBoneObject = pBoneObject;
+		}
+		pPrevBoneObject = nullptr;
+	}
 }
 
 
@@ -163,7 +202,7 @@ void CShader::AnimateObjects(float fTimeElapsed)
 {
 	for (int j = 0; j < m_nObjects; j++)
 	{
-		m_ppObjects[j]->Animate(fTimeElapsed);
+		m_ppObjects[j]->Animate(fTimeElapsed, TRUE);
 	}
 }
 

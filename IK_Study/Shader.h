@@ -1,6 +1,4 @@
 #pragma once
-#include "CubeObject.h"
-#include "CubeMesh.h"
 #include "Camera.h"
 #include "Player.h"
 

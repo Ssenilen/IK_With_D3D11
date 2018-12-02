@@ -19,7 +19,7 @@ CScene::~CScene()
 void CScene::BuildObjects(ID3D11Device *pd3dDevice)
 {
 	m_nShaders = 1;
-	m_pShaders = new CInstancingShader[m_nShaders];
+	m_pShaders = new CShader[m_nShaders];
 	m_pShaders[0].CreateShader(pd3dDevice);
 	m_pShaders[0].BuildObjects(pd3dDevice);
 }

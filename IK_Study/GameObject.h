@@ -17,6 +17,7 @@ public:
 	void AddRef();
 	void Release();
 
+	D3DXMATRIX m_d3dxmtxLocal;
 	D3DXMATRIX m_d3dxmtxWorld;
 	D3DXMATRIX m_d3dxmtxRotate;
 	D3DXMATRIX m_d3dxmtxScale;
@@ -27,7 +28,7 @@ public:
 	CMesh *m_pMesh;
 
 	virtual void SetMesh(CMesh *pMesh);
-	virtual void Animate(float fTimeElapsed);
+	virtual void Animate(float fTimeElapsed, bool bUseLocalMatrix = false);
 	virtual void Render(ID3D11DeviceContext *pd3dDeviceContext);
 
 	virtual void SetPosition(float x, float y, float z);

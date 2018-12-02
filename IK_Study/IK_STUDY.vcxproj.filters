@@ -52,6 +52,9 @@
     <Filter Include="소스 파일\02.Manager\03.FontManager">
       <UniqueIdentifier>{bc23b60f-f094-4e53-9d59-a56cc70a7eb0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02.Manager\02.GameObjectManager\02.IKBone">
+      <UniqueIdentifier>{adc652a8-0b9b-460d-b330-fc9163ba4fbd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -99,6 +102,12 @@
     <ClInclude Include="IK_Study.h">
       <Filter>소스 파일\00.Main</Filter>
     </ClInclude>
+    <ClInclude Include="BoneMesh.h">
+      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone</Filter>
+    </ClInclude>
+    <ClInclude Include="BoneObject.h">
+      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -136,6 +145,12 @@
     </ClCompile>
     <ClCompile Include="IK_Study.cpp">
       <Filter>소스 파일\00.Main</Filter>
+    </ClCompile>
+    <ClCompile Include="BoneMesh.cpp">
+      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone</Filter>
+    </ClCompile>
+    <ClCompile Include="BoneObject.cpp">
+      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

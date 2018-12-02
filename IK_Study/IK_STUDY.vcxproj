@@ -85,6 +85,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BoneMesh.h" />
+    <ClInclude Include="BoneObject.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CubeMesh.h" />
     <ClInclude Include="CubeObject.h" />
@@ -101,6 +103,8 @@
     <ClInclude Include="IK_Study.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BoneMesh.cpp" />
+    <ClCompile Include="BoneObject.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CubeMesh.cpp" />
     <ClCompile Include="CubeObject.cpp" />
