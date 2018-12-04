@@ -1,8 +1,9 @@
 #pragma once
+#include "BoneObject.h"
+
 class CCCDHelper
 {
 public:
-	CCCDHelper();
-	~CCCDHelper();
+	static void ExecuteCCD(std::vector<CBoneObject*>& vBoneVector, const D3DXVECTOR3& d3dxvTargetPos);
 };
 

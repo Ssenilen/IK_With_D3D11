@@ -2,7 +2,7 @@
 #include "BoneObject.h"
 
 
-CBoneObject::CBoneObject() 
+CBoneObject::CBoneObject() : m_fBoneLength(0.0f), m_d3dxvBoneDir(D3DXVECTOR3(0.0f, 1.0f, 0.0f))
 {
 }
 
@@ -14,7 +14,6 @@ CBoneObject::~CBoneObject()
 D3DXMATRIX CBoneObject::Animate(float fTimeElapsed, const D3DXMATRIX& pParentMatrix)
 {
 	m_d3dxmtxLocal = m_d3dxmtxScale * m_d3dxmtxRotate * m_d3dxmtxTranlate;
-
 	m_d3dxmtxWorld = m_d3dxmtxLocal * pParentMatrix;
 
 	return m_d3dxmtxWorld;
@@ -32,6 +31,12 @@ void CBoneObject::Render(ID3D11DeviceContext* pd3dDeviceContext)
 	if (m_pMesh) m_pMesh->Render(pd3dDeviceContext);
 }
 
+void CBoneObject::SetBoneDirection(const D3DXVECTOR3& d3dxvBoneDir)
+{
+	m_d3dxvBoneDir = d3dxvBoneDir;
+	D3DXVec3Normalize(&m_d3dxvBoneDir, &m_d3dxvBoneDir);
+}
+
 D3DXVECTOR3 CBoneObject::GetPosition()
 {
 	return D3DXVECTOR3(m_d3dxmtxWorld._41, m_d3dxmtxWorld._42, m_d3dxmtxWorld._43);
@@ -39,9 +44,9 @@ D3DXVECTOR3 CBoneObject::GetPosition()
 
 void CBoneObject::SetPosition(float x, float y, float z)
 {
-	m_d3dxmtxWorld._41 = x;
-	m_d3dxmtxWorld._42 = y;
-	m_d3dxmtxWorld._43 = z;
+	m_d3dxmtxTranlate._41 = x;
+	m_d3dxmtxTranlate._42 = y;
+	m_d3dxmtxTranlate._43 = z;
 }
 
 void CBoneObject::SetFabrikPosition(D3DXVECTOR3 d3dxvPosition)

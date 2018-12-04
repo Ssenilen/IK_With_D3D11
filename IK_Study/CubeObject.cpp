@@ -4,7 +4,7 @@
 
 CCubeObject::CCubeObject()
 {
-	m_fRotationSpeed = 15.0f;
+	m_fRotationSpeed = 50.0f;
 }
 
 

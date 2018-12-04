@@ -12,7 +12,7 @@ enum class IK_TYPE {
 class CMainBoneObject : public CGameObject
 {
 public:
-	CMainBoneObject(const int nBoneCount, const float fBoneLength, CBoneMesh* pBoneMesh);
+	CMainBoneObject(const IK_TYPE iktype, const int nBoneCount, const float fBoneLength, CBoneMesh* pBoneMesh);
 	~CMainBoneObject();
 
 	D3DXVECTOR3 GetEndEffector();
@@ -26,5 +26,6 @@ private:
 	void AttachBoneObject(CBoneObject* pBoneObject);
 
 	std::vector<CBoneObject*> m_vpBoneObjects;
+	IK_TYPE m_IKType;
 };
 

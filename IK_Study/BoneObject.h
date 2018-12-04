@@ -15,6 +15,8 @@ public:
 
 	void SetBoneLength(const float fBoneLength) { m_fBoneLength = fBoneLength; }
 	float GetBoneLength() { return m_fBoneLength; }
+	void SetBoneDirection(const D3DXVECTOR3& d3dxvBoneDir);
+	D3DXVECTOR3 GetBoneDirection() { return m_d3dxvBoneDir; }
 	virtual D3DXVECTOR3 GetPosition();
 	// 이 부분은 CCD가 도입되면 따로 분리하자. (둘은 방식이 다르다.)
 	virtual void SetPosition(float x, float y, float z);
@@ -23,6 +25,7 @@ public:
 	void Rotate(D3DXMATRIX d3dmtxRotate);
 
 private:
-	float m_fBoneLength;;
+	float m_fBoneLength;
+	D3DXVECTOR3 m_d3dxvBoneDir;
 };
 
