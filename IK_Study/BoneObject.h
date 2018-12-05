@@ -22,7 +22,7 @@ public:
 	virtual void SetPosition(float x, float y, float z);
 
 	void SetFabrikPosition(D3DXVECTOR3 d3dxvPosition);
-	void Rotate(D3DXMATRIX d3dmtxRotate);
+	void Rotate(D3DXMATRIX d3dmtxRotate, bool bMatrixMultiply = false);
 
 private:
 	float m_fBoneLength;

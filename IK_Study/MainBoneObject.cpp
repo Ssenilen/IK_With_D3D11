@@ -36,13 +36,13 @@ void CMainBoneObject::Animate(float fTimeElapsed)
 		CFabrikHelper::ExecuteFabrik(m_vpBoneObjects, D3DXVECTOR3(50.0f, 0.0f, 0.0f));
 		break;
 	case IK_TYPE::IKT_CCD:
-		CCCDHelper::ExecuteCCD(m_vpBoneObjects, D3DXVECTOR3(50.0f, 0.0f, 0.0f));
+		CCCDHelper::ExecuteCCD(m_vpBoneObjects, D3DXVECTOR3(75.0f, 20.0f, 50.0f));
 		break;
 	case IK_TYPE::IKT_AnalyticIK:
 		break;
 	}
 
-	// Fabrik에선 잠시 꺼두자.
+	// IK에서 각각 Animate를 해준다.
 	//for (auto boneObject : m_vpBoneObjects)
 	//{
 	//	d3dxmtxParent = boneObject->Animate(fTimeElapsed, d3dxmtxParent);

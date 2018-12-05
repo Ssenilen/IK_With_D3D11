@@ -154,8 +154,8 @@ void CShader::UpdateShaderVariable(ID3D11DeviceContext *pd3dDeviceContext, D3DXM
 
 void CShader::BuildObjects(ID3D11Device *pd3dDevice)
 {
-	const int nBoneCount = 5;
-	const float fBoneLength = 20.0f;
+	const int nBoneCount = 10;
+	const float fBoneLength = 10.0f;
 	
 	CBoneMesh *pBoneMesh = new CBoneMesh(pd3dDevice, 3.0f, fBoneLength, 3.0f, D3DXCOLOR(0.0f, 0.0f, 1.0f, 1.0f));
 
@@ -171,7 +171,7 @@ void CShader::BuildObjects(ID3D11Device *pd3dDevice)
 	CCubeMesh *pCubeMesh = new CCubeMesh(pd3dDevice, 3.0f, 3.0f, 3.0f, D3DXCOLOR(1.0f, 0.0f, 0.0f, 1.0f));
 	CGameObject* pCubeObject = new CCubeObject();
 	pCubeObject->SetMesh(pCubeMesh);
-	pCubeObject->SetPosition(D3DXVECTOR3(50.0f, 0.0f, 0.0f));
+	pCubeObject->SetPosition(D3DXVECTOR3(75.0f, 20.0f, 50.0f));
 	m_ppObjects[1] = pCubeObject;
 }
 

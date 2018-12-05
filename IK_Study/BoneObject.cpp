@@ -56,7 +56,15 @@ void CBoneObject::SetFabrikPosition(D3DXVECTOR3 d3dxvPosition)
 	m_d3dxmtxTranlate._43 = d3dxvPosition.z;
 }
 
-void CBoneObject::Rotate(D3DXMATRIX d3dmtxRotate)
+void CBoneObject::Rotate(D3DXMATRIX d3dmtxRotate, bool bMatrixMultiply)
 {
-	m_d3dxmtxRotate = d3dmtxRotate;
+	if (bMatrixMultiply)
+	{
+		m_d3dxmtxRotate *= d3dmtxRotate;
+	}
+	else
+	{
+		m_d3dxmtxRotate = d3dmtxRotate;
+	}
+
 }

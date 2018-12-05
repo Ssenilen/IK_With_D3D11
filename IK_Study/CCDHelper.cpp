@@ -1,7 +1,9 @@
 #include "stdafx.h"
 #include "CCDHelper.h"
 
+int g_nCount = 0;
 bool g_bTestFlag = false;
+float g_fEpsilon = 0.5f;
 void CCCDHelper::ExecuteCCD(std::vector<CBoneObject*>& vBoneVector, const D3DXVECTOR3& d3dxvTargetPos)
 {
 	if (vBoneVector.size() <= 1)
@@ -22,8 +24,8 @@ void CCCDHelper::ExecuteCCD(std::vector<CBoneObject*>& vBoneVector, const D3DXVE
 		D3DXVECTOR3 d3dxvCurrBoneToTarget = d3dxvTargetPos - pCurrBone->GetPosition();
 		D3DXVec3Normalize(&d3dxvCurrBoneToTarget, &d3dxvCurrBoneToTarget);
 
-		D3DXVECTOR3 d3dxvNowBoneEndPos = pLastBone->GetPosition() + pLastBone->GetBoneDirection() * pLastBone->GetBoneLength();
-		D3DXVECTOR3 d3dxvStartingPointToEndEffector = d3dxvNowBoneEndPos - pCurrBone->GetPosition();
+		D3DXVECTOR3 d3dxvEndEffector = pLastBone->GetPosition() + pLastBone->GetUp() * pLastBone->GetBoneLength();
+		D3DXVECTOR3 d3dxvStartingPointToEndEffector = d3dxvEndEffector - pCurrBone->GetPosition();
 		D3DXVec3Normalize(&d3dxvStartingPointToEndEffector, &d3dxvStartingPointToEndEffector);
 
 		D3DXMATRIX d3dxmtxRotation;
@@ -36,43 +38,30 @@ void CCCDHelper::ExecuteCCD(std::vector<CBoneObject*>& vBoneVector, const D3DXVE
 		fDot = acos(fDot);
 
 		D3DXMatrixRotationAxis(&d3dxmtxRotation, &d3dxvCrossVec, fDot);
-		pCurrBone->Rotate(d3dxmtxRotation);
+		pCurrBone->Rotate(d3dxmtxRotation, true);
 
 		D3DXMATRIX d3dxmtxParent;
 		D3DXMatrixIdentity(&d3dxmtxParent);
 
-		for (int j = i - 1; j < vBoneVector.size(); ++j)
+		if (i - 1 >= 0)
 		{
-			if (j < 0) continue;
-
-			d3dxmtxParent = vBoneVector[j]->GetWorldMatrix();
-			pCurrBone->Animate(0, d3dxmtxParent);
+			d3dxmtxParent = vBoneVector[i - 1]->GetWorldMatrix();
 		}
 
-		D3DXVECTOR3 d3dxvLastBoneDir; // = pLastBone->GetBoneDirection();
-		D3DXVec3TransformCoord(&d3dxvLastBoneDir, &D3DXVECTOR3(0.0f, 1.0f, 0.0f), &d3dxmtxParent);
-		D3DXVec3Normalize(&d3dxvLastBoneDir, &d3dxvLastBoneDir);
-		pLastBone->SetBoneDirection(d3dxvLastBoneDir);
-
-		//for (int j  = i - 1; j < vBoneVector.size(); ++j);
-		//{
-		//	if (j < 0) continue; // Root의 부모는 처리할 필요가 읎다.
-
-		//	const D3DXMATRIX& d3dxmtxParentMatrix = vBoneVector[j]->GetWorldMatrix();
-		//	pCurrBone->Rotate(d3dxmtxRotation);
-		//	pCurrBone->Animate(0, d3dxmtxParentMatrix);
-		//}}
+		for (int j = i; j < vBoneVector.size(); ++j)
+		{
+			d3dxmtxParent = vBoneVector[j]->Animate(0, d3dxmtxParent);
+		}
 
 		++boneReverseIter;
+		++g_nCount;
 
-		if (i == 3)
+		d3dxvEndEffector = pLastBone->GetPosition() + pLastBone->GetUp() * pLastBone->GetBoneLength();
+		D3DXVECTOR3 length = (d3dxvTargetPos - d3dxvEndEffector);
+		if (length.x*length.x + length.y*length.y + length.z*length.z < g_fEpsilon*g_fEpsilon)
 			g_bTestFlag = true;
-	}
 
-	D3DXMATRIX d3dxmtxParent;
-	D3DXMatrixIdentity(&d3dxmtxParent);
-	for (auto boneObject : vBoneVector)
-	{
-		d3dxmtxParent = boneObject->Animate(0, d3dxmtxParent);
+		Sleep(10.0f);
+		//std::cout << g_nCount << " - length: " << length.x*length.x + length.y*length.y + length.z*length.z << " / epsilon: " << g_fEpsilon*g_fEpsilon << std::endl;
 	}
 }
