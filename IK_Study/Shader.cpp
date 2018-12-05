@@ -154,17 +154,17 @@ void CShader::UpdateShaderVariable(ID3D11DeviceContext *pd3dDeviceContext, D3DXM
 
 void CShader::BuildObjects(ID3D11Device *pd3dDevice)
 {
-	CBoneMesh *pBoneMesh = new CBoneMesh(pd3dDevice, 5.0f, 20.0f, 5.0f, D3DXCOLOR(0.0f, 0.0f, 1.0f, 1.0f));
+	const int nBoneCount = 5;
+	const float fBoneLength = 20.0f;
+	
+	CBoneMesh *pBoneMesh = new CBoneMesh(pd3dDevice, 3.0f, fBoneLength, 3.0f, D3DXCOLOR(0.0f, 0.0f, 1.0f, 1.0f));
 
 	m_nObjects = 2;
 	m_ppObjects = new CGameObject*[m_nObjects];
-
-	const int nBoneCount = 5;
-	const int nBoneLength = 20;
-
+	
 	for (int y = 0; y < m_nObjects - 1; ++y)
 	{
-		CMainBoneObject* pMainBoneObject = new CMainBoneObject(IK_TYPE::IKT_FABRIK, nBoneCount, nBoneLength, pBoneMesh);
+		CMainBoneObject* pMainBoneObject = new CMainBoneObject(IK_TYPE::IKT_CCD, nBoneCount, fBoneLength, pBoneMesh);
 		m_ppObjects[y] = pMainBoneObject;
 	}
 

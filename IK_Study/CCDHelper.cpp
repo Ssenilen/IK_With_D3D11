@@ -12,7 +12,7 @@ void CCCDHelper::ExecuteCCD(std::vector<CBoneObject*>& vBoneVector, const D3DXVE
 
 	std::vector<CBoneObject*>::reverse_iterator boneReverseIter = vBoneVector.rbegin();
 
-	for (int i = 0; i < vBoneVector.size(); ++i)
+	for (int i = vBoneVector.size() - 1; i >= 0; --i)
 	{
 		if (g_bTestFlag)
 			break;
@@ -38,14 +38,34 @@ void CCCDHelper::ExecuteCCD(std::vector<CBoneObject*>& vBoneVector, const D3DXVE
 		D3DXMatrixRotationAxis(&d3dxmtxRotation, &d3dxvCrossVec, fDot);
 		pCurrBone->Rotate(d3dxmtxRotation);
 
-		D3DXVECTOR3 d3dxvCurrBoneDir = pCurrBone->GetBoneDirection();
-		D3DXVec3TransformCoord(&d3dxvCurrBoneDir, &d3dxvCurrBoneDir, &d3dxmtxRotation);
-		D3DXVec3Normalize(&d3dxvCurrBoneDir, &d3dxvCurrBoneDir);
-		pCurrBone->SetBoneDirection(d3dxvCurrBoneDir);
+		D3DXMATRIX d3dxmtxParent;
+		D3DXMatrixIdentity(&d3dxmtxParent);
+
+		for (int j = i - 1; j < vBoneVector.size(); ++j)
+		{
+			if (j < 0) continue;
+
+			d3dxmtxParent = vBoneVector[j]->GetWorldMatrix();
+			pCurrBone->Animate(0, d3dxmtxParent);
+		}
+
+		D3DXVECTOR3 d3dxvLastBoneDir; // = pLastBone->GetBoneDirection();
+		D3DXVec3TransformCoord(&d3dxvLastBoneDir, &D3DXVECTOR3(0.0f, 1.0f, 0.0f), &d3dxmtxParent);
+		D3DXVec3Normalize(&d3dxvLastBoneDir, &d3dxvLastBoneDir);
+		pLastBone->SetBoneDirection(d3dxvLastBoneDir);
+
+		//for (int j  = i - 1; j < vBoneVector.size(); ++j);
+		//{
+		//	if (j < 0) continue; // Root의 부모는 처리할 필요가 읎다.
+
+		//	const D3DXMATRIX& d3dxmtxParentMatrix = vBoneVector[j]->GetWorldMatrix();
+		//	pCurrBone->Rotate(d3dxmtxRotation);
+		//	pCurrBone->Animate(0, d3dxmtxParentMatrix);
+		//}}
 
 		++boneReverseIter;
 
-		if (i == 4)
+		if (i == 3)
 			g_bTestFlag = true;
 	}
 
