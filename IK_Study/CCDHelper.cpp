@@ -3,7 +3,7 @@
 
 int g_nCount = 0;
 bool g_bTestFlag = false;
-float g_fEpsilon = 0.5f;
+float g_fEpsilon = 0.001f;
 void CCCDHelper::ExecuteCCD(std::vector<CBoneObject*>& vBoneVector, const D3DXVECTOR3& d3dxvTargetPos)
 {
 	if (vBoneVector.size() <= 1)
@@ -35,9 +35,12 @@ void CCCDHelper::ExecuteCCD(std::vector<CBoneObject*>& vBoneVector, const D3DXVE
 		D3DXVec3Normalize(&d3dxvCrossVec, &d3dxvCrossVec);
 
 		float fDot = D3DXVec3Dot(&d3dxvStartingPointToEndEffector, &d3dxvCurrBoneToTarget);
+		fDot = max(-1.0f, min(1.0, fDot)); // clamp
 		fDot = acos(fDot);
+		std::cout << fDot << std::endl;
 
 		D3DXMatrixRotationAxis(&d3dxmtxRotation, &d3dxvCrossVec, fDot);
+
 		pCurrBone->Rotate(d3dxmtxRotation, true);
 
 		D3DXMATRIX d3dxmtxParent;
@@ -57,11 +60,15 @@ void CCCDHelper::ExecuteCCD(std::vector<CBoneObject*>& vBoneVector, const D3DXVE
 		++g_nCount;
 
 		d3dxvEndEffector = pLastBone->GetPosition() + pLastBone->GetUp() * pLastBone->GetBoneLength();
-		D3DXVECTOR3 length = (d3dxvTargetPos - d3dxvEndEffector);
-		if (length.x*length.x + length.y*length.y + length.z*length.z < g_fEpsilon*g_fEpsilon)
+		if (D3DXVec3LengthSq(&(d3dxvTargetPos - d3dxvEndEffector)) < g_fEpsilon*g_fEpsilon)
 			g_bTestFlag = true;
+		//if (g_nCount == 255)
+		//	g_bTestFlag = true;
+
 
 		Sleep(10.0f);
-		//std::cout << g_nCount << " - length: " << length.x*length.x + length.y*length.y + length.z*length.z << " / epsilon: " << g_fEpsilon*g_fEpsilon << std::endl;
+		std::cout << g_nCount << " - length: " <<
+			D3DXVec3LengthSq(&(d3dxvTargetPos - d3dxvEndEffector)) <<
+			" / epsilon: " << g_fEpsilon*g_fEpsilon << std::endl;
 	}
 }

@@ -120,6 +120,9 @@
     <ClInclude Include="FabrikHelper.h">
       <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone\IK Helper</Filter>
     </ClInclude>
+    <ClInclude Include="AnalyticIKHelper.h">
+      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone\IK Helper</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -171,6 +174,9 @@
       <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone\IK Helper</Filter>
     </ClCompile>
     <ClCompile Include="FabrikHelper.cpp">
+      <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone\IK Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="AnalyticIKHelper.cpp">
       <Filter>소스 파일\02.Manager\02.GameObjectManager\02.IKBone\IK Helper</Filter>
     </ClCompile>
   </ItemGroup>
