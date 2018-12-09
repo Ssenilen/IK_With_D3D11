@@ -2,7 +2,7 @@
 #include "MainBoneObject.h"
 #include "FabrikHelper.h"
 #include "CCDHelper.h"
-
+#include "AnalyticIKHelper.h"
 
 CMainBoneObject::CMainBoneObject(const IK_TYPE iktype, const int nBoneCount, const float fBoneLength, CBoneMesh* pBoneMesh) : m_IKType(iktype)
 {
@@ -36,9 +36,10 @@ void CMainBoneObject::Animate(float fTimeElapsed)
 		CFabrikHelper::ExecuteFabrik(m_vpBoneObjects, D3DXVECTOR3(50.0f, 0.0f, 0.0f));
 		break;
 	case IK_TYPE::IKT_CCD:
-		CCCDHelper::ExecuteCCD(m_vpBoneObjects, D3DXVECTOR3(75.0f, 20.0f, 50.0f));
+		CCCDHelper::ExecuteCCD(m_vpBoneObjects, D3DXVECTOR3(50.0f, 0.0f, 0.0f));
 		break;
 	case IK_TYPE::IKT_AnalyticIK:
+		CAnalyticIKHelper::ExecuteAnalyticIKHelper(m_vpBoneObjects, D3DXVECTOR3(25.0f, 0.0f, 0.0f));
 		break;
 	}
 

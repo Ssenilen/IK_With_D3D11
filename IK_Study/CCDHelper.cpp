@@ -62,8 +62,8 @@ void CCCDHelper::ExecuteCCD(std::vector<CBoneObject*>& vBoneVector, const D3DXVE
 		d3dxvEndEffector = pLastBone->GetPosition() + pLastBone->GetUp() * pLastBone->GetBoneLength();
 		if (D3DXVec3LengthSq(&(d3dxvTargetPos - d3dxvEndEffector)) < g_fEpsilon*g_fEpsilon)
 			g_bTestFlag = true;
-		//if (g_nCount == 255)
-		//	g_bTestFlag = true;
+		if (g_nCount == 2)
+			g_bTestFlag = true;
 
 
 		Sleep(10.0f);
