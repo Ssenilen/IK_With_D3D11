@@ -2,7 +2,7 @@
 #include "BoneObject.h"
 
 
-CBoneObject::CBoneObject() : m_fBoneLength(0.0f), m_d3dxvBoneDir(D3DXVECTOR3(0.0f, 1.0f, 0.0f))
+CBoneObject::CBoneObject() : m_fBoneLength(0.0f)
 {
 }
 
@@ -31,12 +31,6 @@ void CBoneObject::Render(ID3D11DeviceContext* pd3dDeviceContext)
 	if (m_pMesh) m_pMesh->Render(pd3dDeviceContext);
 }
 
-void CBoneObject::SetBoneDirection(const D3DXVECTOR3& d3dxvBoneDir)
-{
-	m_d3dxvBoneDir = d3dxvBoneDir;
-	D3DXVec3Normalize(&m_d3dxvBoneDir, &m_d3dxvBoneDir);
-}
-
 D3DXVECTOR3 CBoneObject::GetPosition()
 {
 	return D3DXVECTOR3(m_d3dxmtxWorld._41, m_d3dxmtxWorld._42, m_d3dxmtxWorld._43);
@@ -49,7 +43,7 @@ void CBoneObject::SetPosition(float x, float y, float z)
 	m_d3dxmtxTranlate._43 = z;
 }
 
-void CBoneObject::SetFabrikPosition(D3DXVECTOR3 d3dxvPosition)
+void CBoneObject::SetPosition(D3DXVECTOR3 d3dxvPosition)
 {
 	m_d3dxmtxTranlate._41 = d3dxvPosition.x;
 	m_d3dxmtxTranlate._42 = d3dxvPosition.y;

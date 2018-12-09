@@ -154,7 +154,7 @@ void CShader::UpdateShaderVariable(ID3D11DeviceContext *pd3dDeviceContext, D3DXM
 
 void CShader::BuildObjects(ID3D11Device *pd3dDevice)
 {
-	const int nBoneCount = 2;
+	const int nBoneCount = 8;
 	const float fBoneLength = 20.0f;
 	
 	CBoneMesh *pBoneMesh = new CBoneMesh(pd3dDevice, 2.0f, fBoneLength, 2.0f, D3DXCOLOR(0.0f, 0.0f, 1.0f, 1.0f));
@@ -164,11 +164,11 @@ void CShader::BuildObjects(ID3D11Device *pd3dDevice)
 	
 	for (int y = 0; y < m_nObjects - 1; ++y)
 	{
-		CMainBoneObject* pMainBoneObject = new CMainBoneObject(IK_TYPE::IKT_AnalyticIK, nBoneCount, fBoneLength, pBoneMesh);
+		CMainBoneObject* pMainBoneObject = new CMainBoneObject(IK_TYPE::IKT_FABRIK, nBoneCount, fBoneLength, pBoneMesh);
 		m_ppObjects[y] = pMainBoneObject;
 	}
 
-	CCubeMesh *pCubeMesh = new CCubeMesh(pd3dDevice, 3.0f, 3.0f, 3.0f, D3DXCOLOR(1.0f, 0.0f, 0.0f, 1.0f));
+	CCubeMesh *pCubeMesh = new CCubeMesh(pd3dDevice, 2.0f, 2.0f, 2.0f, D3DXCOLOR(1.0f, 0.0f, 0.0f, 1.0f));
 	CGameObject* pCubeObject = new CCubeObject();
 	pCubeObject->SetMesh(pCubeMesh);
 	pCubeObject->SetPosition(D3DXVECTOR3(25.0f, 0.0f, 0.0f));

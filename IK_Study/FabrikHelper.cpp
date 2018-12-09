@@ -10,9 +10,8 @@ void CFabrikHelper::ExecuteFabrik(std::vector<CBoneObject*>& vBoneVector, const 
 	std::vector<CBoneObject*>::iterator boneIterEnd = vBoneVector.end();
 
 	CFabrikHelper::ExecuteForwardReaching(boneReverseIter, boneReverseIterEnd, d3dxvTargetPos);
-	CFabrikHelper::ExecuteBackwardReaching(boneIter, boneIterEnd, d3dxvTargetPos);
-
-
+	D3DXVECTOR3 d3dxvBackwordPos(0.0f, 0.0f, 0.0f);
+	CFabrikHelper::ExecuteBackwardReaching(boneIter, boneIterEnd, d3dxvBackwordPos);
 }
 
 void CFabrikHelper::ExecuteForwardReaching(std::vector<CBoneObject*>::reverse_iterator& BoneReverceIter, std::vector<CBoneObject*>::reverse_iterator& BoneReverceIterEnd, const D3DXVECTOR3& d3dxvTargetPos)
@@ -47,13 +46,22 @@ void CFabrikHelper::ExecuteForwardReaching(std::vector<CBoneObject*>::reverse_it
 	
 	// 반드시 이 순서로 해야 한다. (Rot 행렬 만들고, 좌표를 넣어주는 식.)
 	pBoneObject->Rotate(d3dxmtxRotation);
-	pBoneObject->SetFabrikPosition(d3dxvNextTargetPos);
+	pBoneObject->SetPosition(d3dxvNextTargetPos);
 	pBoneObject->FabrikAnimate();
 
 	ExecuteForwardReaching(++BoneReverceIter, BoneReverceIterEnd, d3dxvNextTargetPos);
 }
 
-void CFabrikHelper::ExecuteBackwardReaching(std::vector<CBoneObject*>::iterator& BoneIter, std::vector<CBoneObject*>::iterator& BoneIterEnd, const D3DXVECTOR3& d3dxvTargetPos)
+void CFabrikHelper::ExecuteBackwardReaching(std::vector<CBoneObject*>::iterator& BoneIter, std::vector<CBoneObject*>::iterator& BoneIterEnd, const D3DXVECTOR3& d3dxvBackwardPos)
 {
+	if (BoneIter == BoneIterEnd)
+		return;
 
+	CBoneObject* pBoneObject = *BoneIter;
+	pBoneObject->SetPosition(d3dxvBackwardPos);
+	pBoneObject->FabrikAnimate();
+
+	D3DXVECTOR3 d3dxvNextBonePos = pBoneObject->GetPosition() + pBoneObject->GetUp() * pBoneObject->GetBoneLength();
+
+	ExecuteBackwardReaching(++BoneIter, BoneIterEnd, d3dxvNextBonePos);
 }

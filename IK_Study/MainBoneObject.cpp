@@ -33,7 +33,7 @@ void CMainBoneObject::Animate(float fTimeElapsed)
 	switch (m_IKType)
 	{
 	case IK_TYPE::IKT_FABRIK:
-		CFabrikHelper::ExecuteFabrik(m_vpBoneObjects, D3DXVECTOR3(50.0f, 0.0f, 0.0f));
+		CFabrikHelper::ExecuteFabrik(m_vpBoneObjects, D3DXVECTOR3(50.0f, 50.0f, 50.0f));
 		break;
 	case IK_TYPE::IKT_CCD:
 		CCCDHelper::ExecuteCCD(m_vpBoneObjects, D3DXVECTOR3(50.0f, 0.0f, 0.0f));

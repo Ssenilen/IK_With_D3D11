@@ -32,7 +32,7 @@ CCubeMesh::CCubeMesh(ID3D11Device *pd3dDevice, float fWidth, float fHeight, floa
 
 	//직육면체 메쉬의 정점 버퍼(색상 버퍼)를 생성한다.
 	D3DXCOLOR pd3dxColors[8];
-	for (int i = 0; i < 8; i++) pd3dxColors[i] = d3dxColor + RANDOM_COLOR;
+	for (int i = 0; i < 8; i++) pd3dxColors[i] = d3dxColor - RANDOM_COLOR * 0.3f;
 
 	d3dBufferDesc.ByteWidth = sizeof(D3DXCOLOR) * m_nVertices;
 	d3dBufferData.pSysMem = pd3dxColors;
